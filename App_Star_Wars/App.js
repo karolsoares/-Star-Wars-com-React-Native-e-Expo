@@ -1,10 +1,10 @@
 import React from 'react';
-import {Films} from './src/screens/films';
+import {Person} from './src/screens/person';
 
 
 export default function App() {
   return (
-    <Films/>
+    <Person/>
   );
 }
 
