@@ -9,6 +9,7 @@
   "author": "Karol Soares, Felipe Guindani, Leonardo Osvald",
   "license": "ISC",
   "dependencies": {
-    "react-native": "^0.79.1"
+    "react-native": "^0.79.1",
+    "yet": "^0.1.0"
   }
 }
