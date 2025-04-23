@@ -1,0 +1,14 @@
+{
+  "name": "-star-wars-com-react-native-e-expo",
+  "version": "1.0.0",
+  "description": "Trabalho G1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Karol Soares, Felipe Guindani, Leonardo Osvald",
+  "license": "ISC",
+  "dependencies": {
+    "react-native": "^0.79.1"
+  }
+}
