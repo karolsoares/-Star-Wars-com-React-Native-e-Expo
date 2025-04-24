@@ -1,10 +1,20 @@
 import React from 'react';
-import {Person} from './src/screens/person';
+import { Characters } from './src/screens/CharactersScreen';
+import { Films } from './src/screens/films';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+const Tab = createBottomTabNavigator();
 
-export default function App() {
+const App = () => {
   return (
-    <Person/>
+    <NavigationContainer>
+      <Tab.Navigator initialRouteName="Characters">
+        <Tab.Screen name="Characters" component={Characters} />
+        <Tab.Screen name="Films" component={Films} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
+export default App;
