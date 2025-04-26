@@ -1,10 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { View, Text, FlatList, ActivityIndicator, StyleSheet } from 'react-native';
 import React from 'react';
-import { useGetPerson } from '../../services/hooks/useGetPerson' ; // Caminho ajustado corretamente
+import { useGetCharacter } from '../../services/hooks/useGetCharacter' ; // Caminho ajustado corretamente
+import { CharacterCard }  from '../../components/CharacterCard'
 
-export const Person = () => {
-  const { characters, loading, error } = useGetPerson();
+export const Characters = () => {
+  const { characters, loading, error } = useGetCharacter();
 
   if (loading) {
     return (
@@ -17,7 +18,7 @@ export const Person = () => {
   if (error) {
     return (
       <View style={styles.center}>
-        <Text>Erro ao carregar Personagens</Text>
+        <Text>Erro ao carregar Characteragens</Text>
       </View>
       
     );
@@ -30,7 +31,7 @@ export const Person = () => {
         data={characters}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <Text style={styles.item}>{item.name}</Text>
+          CharacterCard(item.name)
         )}
       />
       <StatusBar style="auto" />
@@ -40,10 +41,10 @@ export const Person = () => {
 
 const styles = StyleSheet.create({
   container: {
+    alignContent: 'center',
     flex: 1,
     paddingTop: 70,
     paddingHorizontal: 20,
-    backgroundColor: '#8C0B23',
   },
   center: {
     flex: 1,
@@ -61,3 +62,4 @@ const styles = StyleSheet.create({
     color: '#0D0D0D'
   },
 });
+

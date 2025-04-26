@@ -1,16 +1,24 @@
 import { useEffect, useState } from 'react';
 import { api } from '../api';
 
-export const useGetPerson = () => {
+export const useGetCharacter = () => {
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchPerson = async () => {
+    const fetchCharacter = async () => {
       try {
-        const response = await api.get('api/characters');
-        setCharacters(response.data); // Ajustado para acessar corretamente os dados da SWAPI
+        const characterIds = [1,2, 4, 5, 20]; // IDs dos personagens desejados
+
+        const requests = characterIds.map((id) =>
+          api.get(`/api/characters/${id}`)
+        );
+
+        const responses = await Promise.all(requests);
+        const characterData = responses.map(res => res.data);
+
+        setCharacters(characterData);
       } catch (err) {
         console.error('Erro ao buscar personagens:', err);
         setError(err);
@@ -19,7 +27,7 @@ export const useGetPerson = () => {
       }
     };
 
-    fetchPerson();
+    fetchCharacter();
   }, []);
 
   return {

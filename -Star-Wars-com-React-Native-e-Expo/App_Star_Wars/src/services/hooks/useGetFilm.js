@@ -10,7 +10,7 @@ export const useGetFilm = () => {
     const fetchFilms = async () => {
       try {
         const response = await api.get('/api/films');
-        setFilms(response.data); // Ajustado para acessar corretamente os dados da SWAPI
+        setFilms(response.data.slice(0,5)); // Ajustado para acessar corretamente os dados da SWAPI
       } catch (err) {
         console.error('Erro ao buscar filmes:', err);
         setError(err);
