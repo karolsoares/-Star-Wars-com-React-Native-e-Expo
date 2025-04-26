@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { View, Text, FlatList, ActivityIndicator, StyleSheet } from 'react-native';
 import React from 'react';
 import { useGetCharacter } from '../../services/hooks/useGetCharacter' ; // Caminho ajustado corretamente
-import { CharacterCard}  from '../../components/CharacterCard' 
+import { CharacterCard }  from '../../components/CharacterCard'
 
 export const Characters = () => {
   const { characters, loading, error } = useGetCharacter();
@@ -31,7 +31,7 @@ export const Characters = () => {
         data={characters}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <Text style={styles.item}>{item.name}</Text>
+          CharacterCard(item.name)
         )}
       />
       <StatusBar style="auto" />
@@ -62,3 +62,4 @@ const styles = StyleSheet.create({
     color: '#0D0D0D'
   },
 });
+

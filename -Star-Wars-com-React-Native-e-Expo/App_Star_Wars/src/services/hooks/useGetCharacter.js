@@ -9,10 +9,18 @@ export const useGetCharacter = () => {
   useEffect(() => {
     const fetchCharacter = async () => {
       try {
-        const response = await api.get('api/characters');
-        setCharacters(response.data.slice(0,5)); // Ajustado para acessar corretamente os dados da SWAPI
+        const characterIds = [1,2, 4, 5, 20]; // IDs dos personagens desejados
+
+        const requests = characterIds.map((id) =>
+          api.get(`/api/characters/${id}`)
+        );
+
+        const responses = await Promise.all(requests);
+        const characterData = responses.map(res => res.data);
+
+        setCharacters(characterData);
       } catch (err) {
-        console.error('Erro ao buscar Characteragens:', err);
+        console.error('Erro ao buscar personagens:', err);
         setError(err);
       } finally {
         setLoading(false);
