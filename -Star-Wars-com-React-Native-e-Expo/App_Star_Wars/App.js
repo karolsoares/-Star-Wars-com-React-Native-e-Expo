@@ -1,7 +1,7 @@
 import React from 'react';
 import { Characters } from './src/screens/CharactersScreen';
 import { Films } from './src/screens/films';
-import { DetailsCharacters } from './src/screens/DetailsCharacters';
+import { DetailsCharacters } from './src/screens/Details';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -11,9 +11,9 @@ const App = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator initialRouteName="Characters">
-        <Tab.Screen name="Personagens" component={Characters} />
-        <Tab.Screen name="Filmes" component={Films} />
-        <Tab.Screen name="Detalhes dos Personagens" component={DetailsCharacters} />
+        <Tab.Screen name="Characters" component={Characters} />
+        <Tab.Screen name="Films" component={Films} />
+        <Tab.Screen name="DetailsCharacters" component={DetailsCharacters} />
       </Tab.Navigator>
     </NavigationContainer>
   );

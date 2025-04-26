@@ -18,7 +18,7 @@ export const Characters = () => {
   if (error) {
     return (
       <View style={styles.center}>
-        <Text>Erro ao carregar Characteragens</Text>
+        <Text>Erro ao carregar Personagens</Text>
       </View>
       
     );

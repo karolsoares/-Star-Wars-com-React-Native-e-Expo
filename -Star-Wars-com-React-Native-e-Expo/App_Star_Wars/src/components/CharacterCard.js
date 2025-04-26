@@ -1,24 +1,18 @@
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
-import  Films  from '../screens/films';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useNavigation } from '@react-navigation/native'; // Importe o hook de navegação
 
-const Tab = createBottomTabNavigator();
+const navigateToDetails = (details) => {
+  const navigation = useNavigation(); // Inicialize a navegação
+  navigation.navigate('DetailsCharacters', { detailsURLs: details });
 
-const onPressFilm = () => {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator initialRouteName="Characters">
-        <Tab.Screen name="Detalhes dos Personagens" component={DetailsCharacters} />
-      </Tab.Navigator>
-    </NavigationContainer>
-  );
-};
-
+}
 export function CharacterCard(label) {
   return (
-    <TouchableOpacity style={styles.card} onPress={onPressFilm}>
+    <TouchableOpacity
+      style={styles.card}
+      onPress={() => navigateToDetails({label})}
+    >
       <Text style={styles.name}>{label}</Text>
     </TouchableOpacity>
   );
