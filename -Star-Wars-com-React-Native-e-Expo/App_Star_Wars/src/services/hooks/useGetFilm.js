@@ -1,30 +1,28 @@
-import { useEffect, useState } from 'react';
-import { api } from '../api';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-export const useGetFilm = () => {
+export function useGetFilm(characterId) {
   const [films, setFilms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchFilms = async () => {
+    async function fetchFilms() {
+      setLoading(true);
       try {
-        const response = await api.get('/api/films');
-        setFilms(response.data.slice(0,5)); // Ajustado para acessar corretamente os dados da SWAPI
+        const response = await axios.get(`https://swapi.online/api/characters/${characterId}/films`);
+        setFilms(response.data);
       } catch (err) {
-        console.error('Erro ao buscar filmes:', err);
-        setError(err);
+        setError(err.message || 'Erro ao buscar filmes');
       } finally {
         setLoading(false);
       }
-    };
+    }
 
     fetchFilms();
-  }, []);
+  }, [characterId]);
 
-  return {
-    films,
-    loading,
-    error,
-  };
-};
+  return { films, loading, error };
+}
+
+export default useGetFilm;

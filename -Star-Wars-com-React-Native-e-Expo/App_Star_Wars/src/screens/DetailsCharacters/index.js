@@ -4,15 +4,23 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native'; // Importe o hook de navegação
 
 export const DetailsCharacters = ({route}) => {
+
+  if (!route?.params?.characterInfo) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Erro ao carregar Personagem</Text>
+      </View>
+    );
+  }
+
   const navigation = useNavigation();
   const { characterInfo } = route.params;
-
-  const navigateToVehicles = (vehicles) => {
-    navigation.navigate('Vehicles', { vehicleURLs: vehicles });
+  const navigateToShips = () => {
+    navigation.navigate('Ships',  { characterId: characterInfo.id  });
   };
 
-  const navigateToFilms = (films) => {
-    navigation.navigate('Films', { filmURLs: films });
+  const navigateToFilms = () => {
+    navigation.navigate('Films', { characterId: characterInfo.id  });
   };
 
   return (
@@ -56,14 +64,14 @@ export const DetailsCharacters = ({route}) => {
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigateToVehicles(characterInfo.vehicles)}
+            onPress={() => navigateToShips(characterInfo.id)}
           >
             <Text style={styles.buttonText}>Naves</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigateToFilms(characterInfo.films)}
+            onPress={() => navigateToFilms(characterInfo.id)}
           >
             <Text style={styles.buttonText}>Filmes</Text>
           </TouchableOpacity>

@@ -1,23 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
 import { View, Text, FlatList, ActivityIndicator, StyleSheet } from 'react-native';
 import React from 'react';
-import { useGetFilm } from '../../services/hooks/useGetFilm'; // Caminho ajustado corretamente
-import { FilmCard } from '../../components/FilmCard';
+import { useGetShips } from '../../services/hooks/useGetShips'; // Caminho ajustado corretamente
+import { ShipCard } from '../../components/ShipCard';
 
-export const Films = ({route}) => {
+export const Ships = ({route}) => {
   
   if (!route?.params?.characterId) {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Erro ao carregar filme</Text>
+        <Text style={styles.title}>Erro ao carregar naves</Text>
       </View>
     );
   }
 
   const { characterId } = route.params;
-  console.log(characterId);
-  const { films, loading, error } = useGetFilm(characterId);
+  const { starships, loading, error } = useGetShips(characterId);
 
+  console.log(starships)
 
   if (loading) {
     return (
@@ -30,22 +30,21 @@ export const Films = ({route}) => {
   if (error) {
     return (
       <View style={styles.center}>
-        <Text>Erro ao carregar filmes</Text>
+        <Text>Erro ao carregar naves</Text>
       </View>
       
     );
   }
   
-  console.log(films)
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Filmes de Star Wars</Text>
+      <Text style={styles.title}>Naves utilizadas</Text>
       <FlatList
-        data={films}
+        data={starships}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <FilmCard filmInfo={item} />
+          <ShipCard shipInfo={item} />
         )}
         columnWrapperStyle={styles.row} // Estilo para o wrapper das colunas
       />
