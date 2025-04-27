@@ -1,7 +1,7 @@
 import React from 'react';
 import { Characters } from './src/screens/CharactersScreen';
 import { Films } from './src/screens/films';
-import { DetailsCharacters } from './src/screens/Details';
+import { DetailsCharacters } from './src/screens/DetailsCharacters';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
